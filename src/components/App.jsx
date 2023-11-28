@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { FeedbackButtons } from "./FeedbackButtons/FeedbackButtons";
 import { FeedbackStat } from "./FeedbackStat/FeedbackStat";
+import css from './App.module.css'
+
 export class App extends Component {
   state = {
     good: 0,
@@ -23,17 +25,12 @@ export class App extends Component {
   }
 
   totalCounter = () => this.state.good + this.state.neutral + this.state.bad
+feedbackPercentage = ()=> Math.round((this.state.good/this.totalCounter())*100)
 
-  render() {
-    return (<div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}>
+
+
+render() {
+    return (<div className={css.app}>
 
       <FeedbackButtons options={['good', 'neutral', 'bad']} feedbackCB={this.handleFeedback}>
       </FeedbackButtons>
@@ -42,7 +39,9 @@ export class App extends Component {
         good={this.state.good}
         neutral={this.state.neutral}
         bad={this.state.bad}
-        total={this.totalCounter()} />) : (<h2>No feedback given</h2>)}
+        total={this.totalCounter()}
+        positivePercentage={this.feedbackPercentage()} />) : (<h2>No feedback given</h2>)}
+
     </div>)
   }
 };

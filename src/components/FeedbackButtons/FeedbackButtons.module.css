@@ -1,0 +1,8 @@
+.button{
+margin: 10px;
+}
+.buttonsList{
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+}
